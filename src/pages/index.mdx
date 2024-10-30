@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
-title: Academic Project Page Template
-description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+title: "CLIP-RT : Learning Language-Conditioned Robotic Policies from Natural Language Supervision"
+description: Learning Language-Conditioned Robotic Policies from Natural Language Supervision
 favicon: favicon.svg
 thumbnail: screenshot.png
 ---
@@ -19,7 +19,7 @@ import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
-import transformer from "../assets/transformer.webp";
+import model_overview from "../assets/model_overview.png";
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
@@ -29,55 +29,66 @@ export const components = {pre: CodeBlock}
   title={frontmatter.title}
   authors={[
     {
-      name: "Roman Hauksson",
-      url: "https://roman.technology",
-      institution: "Independent",
-      notes: ["*", "†"],
+      name: "Gi-Cheon Kang",
+      url: "https://gicheonkang.com",
+      notes: ["*,1"],
     },
     {
-      name: "Author Two",
-      institution: "Institution Two",
-      notes: ["*", "†"],
+      name: "Junghyun Kim",
+      url:"https://jhkim-snu.github.io/",
+      notes: ["*,1"],
     },
     {
-      name: "Author Three",
-      institution: "Institution Three",
-      notes: ["†"],
+      name: "Kyuhwan Shim",
+      url:"https://bi.snu.ac.kr/~khshim/",
+      notes: ["1"],
     },
     {
-      name: "Author Four",
-      institution: "Institution Four",
+      name: "Jun Ki Lee",
+      url:"https://junkilee.github.io/",
+      notes: ["†,2"],
+    },
+    {
+      name: "Byoung-Tak Zhang",
+      url:"https://bi.snu.ac.kr/~btzhang/",
+      notes: ["†,2"],
     },
   ]}
-  conference="Conference Name"
+  institute={[
+    { symbol: "¹", name: "Graduate School of AI, Seoul National University" },
+    { symbol: "²", name: "AI Institute, Seoul National University (AIIS)" },
+  ]}
+  conference="Conference of Robot Learning Workshop@2024, LangRob"
   notes={[
     {
       symbol: "*",
-      text: "author note one",
+      text: "Equal Contribution",
     },
     {
       symbol: "†",
-      text: "author note two",
+      text: "Corresponding Authors",
     },
   ]}
   links={[
     {
       name: "Paper",
-      url: "",
+      url: "https://sites.google.com/view/langrob-corl24/home?authuser=0",
       icon: "fa-solid:file-pdf",
     },
     {
       name: "Code",
-      url: "https://github.com/RomanHauksson/academic-project-astro-template",
+      url: "https://github.com/JHKim-snu/CLIP-RT",
       icon: "mdi:github",
     },
     {
       name: "arXiv",
-      url: "",
+      url: "https://arxiv.org/",
       icon: "academicons:arxiv",
     },
   ]}
-  />
+/>
+
+
 
 <Video source={outside} />
 
@@ -85,18 +96,23 @@ export const components = {pre: CodeBlock}
 
 ## Abstract
 
-This is a live demo for a template you can use to create a simple project page for your research paper. See the code for the template and instructions on how to use it yourself [here](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind CSS](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+This paper explores how nonexperts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. 
+To this end, we investigate two key aspects: (1) how nonexperts collect robotic data using natural language supervision and (2) how pre-trained vision-language models learn end-to-end policies directly from this supervision. 
+We propose a data collection framework that collects robot demonstrations based on natural language supervision (e.g., ``move forward'') and further augments these demonstrations. 
+Next, we introduce a model that learns language-conditioned policies from natural language supervision called CLIP-RT. 
+Our model employs pre-trained CLIP models and learns to predict actions represented in language via contrastive imitation learning. 
+We first train CLIP-RT on large-scale robotic data and then enable it to learn desired skills using data collected from our framework.
+CLIP-RT shows strong capabilities in acquiring novel manipulation skills, outperforming the state-of-the-art model, OpenVLA (7B parameters), by 17\% in average success rates, while using 7x fewer parameters (1B). 
 
 </HighlightedSection>
 
 ## Figures
 
-Use the figure component to display images, videos, equations, or any other element, with an optional caption.
+In practice, we add a simple text prompt to language instructions: What motion should the robot arm perform to complete the instruction
 
 <Figure
-    caption="Diagram of the transformer deep learning architecture."
-  >
-    <Image source={transformer} altText="Diagram of the transformer deep learning architecture." />
+    caption="Overview of CLIP-RT.">
+    <Image source={model_overview} altText="Overview of CLIP-RT." />
 </Figure>
 
 ## Two columns

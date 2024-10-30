@@ -12,15 +12,25 @@ interface Props {
   links: Link[];
 }
 
-const { title, authors, conference, notes, links } = Astro.props as Props;
+const { title, authors, institute, conference, notes, links } = Astro.props as Props;
 ---
-
 <header class="flex flex-col gap-10 items-center mb-6">
   <h1>{title}</h1>
   <div class="flex flex-col gap-6 items-center">
     <Authors authors={authors} />
+    {institute && (
+      <p class="text-center">
+        {institute.map((inst, index) => (
+          <span key={index}>
+            <sup>{inst.symbol}</sup>{inst.name}
+            {index < institute.length - 1 && ', '}
+          </span>
+        ))}
+      </p>
+    )}
     {conference && <p class="text-center">{conference}</p>}
     {notes && <Notes notes={notes} />}
     {links && <Links links={links} />}
   </div>
 </header>
+
