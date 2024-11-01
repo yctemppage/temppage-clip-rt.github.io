@@ -50,12 +50,12 @@ export const components = {pre: CodeBlock}
     {
       name: "Gi-Cheon Kang",
       url: "https://gicheonkang.com",
-      notes: ["1,2,*"],
+      notes: ["1,2*"],
     },
     {
       name: "Junghyun Kim",
       url:"https://jhkim-snu.github.io/",
-      notes: ["1,2,*"],
+      notes: ["1,2*"],
     },
     {
       name: "Kyuhwan Shim",
@@ -65,16 +65,16 @@ export const components = {pre: CodeBlock}
     {
       name: "Jun Ki Lee",
       url:"https://junkilee.github.io/",
-      notes: ["2,†"],
+      notes: ["2†"],
     },
     {
       name: "Byoung-Tak Zhang",
       url:"https://bi.snu.ac.kr/~btzhang/",
-      notes: ["1,2,†"],
+      notes: ["1,2†"],
     },
   ]}
   institute={[
-    { symbol: "¹", name: "Graduate School of AI, Seoul National University" },
+    { symbol: "¹", name: "IPAI, Seoul National University" },
     { symbol: "²", name: "AI Institute, Seoul National University (AIIS)" },
   ]} 
   notes={[
@@ -134,7 +134,7 @@ export const components = {pre: CodeBlock}
         <Figure caption="Pour the dog food">
           <Video source={pour_the_dog_food} />
         </Figure>
-        <Figure caption="Stamp">
+        <Figure caption="Stamp near the circle">
           <Video source={stamp} />
         </Figure>
       </div>
@@ -146,16 +146,16 @@ export const components = {pre: CodeBlock}
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem;">
       <p><strong>TL;DR</strong></p>
-      <p>We enable robots to learn policies solely through natural language supervision.</p>
-      <p>Our VLA model directly translates language instructions into actionable robotic tasks.</p>
+      <p>We enable robots to learn end-to-end policies only through natural language supervision.</p>
+      <p>Our VLA model learns robotic skills directly from this supervision.</p>
   </div>
 </section>
 
 <HighlightedSection>
 ## Abstract
 
-This paper explores how nonexperts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. 
-To this end, we investigate two key aspects: (1) how nonexperts collect robotic data using natural language supervision and (2) how pre-trained vision-language models learn end-to-end policies directly from this supervision. 
+This paper explores how non-experts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. 
+To this end, we investigate two key aspects: (1) how non-experts collect robotic data using natural language supervision and (2) how pre-trained vision-language models learn end-to-end policies directly from this supervision. 
 We propose a data collection framework that collects robot demonstrations based on natural language supervision (e.g., ``move forward'') and further augments these demonstrations. 
 Next, we introduce a model that learns language-conditioned policies from natural language supervision called CLIP-RT. 
 Our model employs pre-trained CLIP models and learns to predict actions represented in language via contrastive imitation learning. 
