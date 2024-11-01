@@ -1,36 +1,17 @@
-# Academic project page template
+# CLIP-RT : Learning Language-Conditioned Robotic Policies from Natural Language Supervision
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/romanhauksson/academic-project-astro-template) [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRomanHauksson%2Facademic-project-astro-template)
+## Abstract
+This paper explores how nonexperts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. To this end, we investigate two key aspects: (1) how nonexperts collect robotic data using natural language supervision and (2) how pre-trained vision-language models learn end-to-end policies directly from this supervision. We propose a data collection framework that collects robot demonstrations based on natural language supervision (e.g., “move forward”) and further augments these demonstrations. Next, we introduce a model that learns language-conditioned policies from natural language supervision called CLIP-RT. Our model employs pre-trained CLIP models and learns to predict actions represented in language via contrastive imitation learning. We first train CLIP-RT on large-scale robotic data and then enable it to learn desired skills using data collected from our framework. CLIP-RT shows strong capabilities in acquiring novel manipulation skills, outperforming the state-of-the-art model, OpenVLA (7B parameters), by 17% in average success rates, while using 7x fewer parameters (1B).
 
-This is a template you can use to create a simple project page for your research paper. See a live demo [here](https://research-template.roman.technology).
-
-![](./public/screenshot.png)
-
-## Features
-
-- Polished, quick-to-load, responsive, accessible, and SEO-friendly template adapted from the original [Nerfies page](https://nerfies.github.io/).
-- Easily edit in Markdown instead of HTML.
-- Includes out-of-the-box components for the header, figures, LaTeX equations, two-column layouts, code blocks (with syntax highlighting), small caps, videos, and YouTube embeds.
-- Add custom components using HTML or even other web frameworks like React, Vue, or Svelte.
-- Built with modern web development tools like [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
-
-## Usage
-
-Need help setting it up? Please schedule a call with me [here](https://cal.com/romanhauksson/meeting), and I'll personally walk you through making your project page live! I want to talk to potential users to figure out pain points and features to add.
-
-1. [Install Node.js](https://nodejs.org/en/download/package-manager).
-1. Click "Use this template" to make a copy of this repository and then clone it, or just clone it directly.
-1. Run `npm install` from the root of the project to install dependencies.
-1. Edit the content in `/src/pages/index.mdx`, and remember to update the favicon at `/public/favicon.svg` and the social link thumbnail (optional) at `/public/thumbnail.png`.
-1. Run `npm run dev` to see a live preview of your page while you edit it.
-1. Host the website using [GitHub Pages](https://pages.github.com/), [Vercel](https://vercel.com), [Netlify](https://www.netlify.com/), or any other static site hosting service.
-
-## Notes
-
-- If you're using VS Code, I recommend installing the [Astro extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) to get IntelliSense, syntax highlighting, and other features.
-- When people share the link to your project on social media, it will often appear as a "link preview" based on the title, description, thumbnail, and favicon you configured. Double check that these previews look right using [this tool](https://linkpreview.xyz/).
-- The Nerfies page uses the Google Sans font, which is licensed by Google, so unfortunately, I had to change it to a different font instead (I picked Noto Sans).
-
-## Credits
-
-This template was adapted from Eliahu Horwitz's [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template), which was adapted from Keunhong Park's [project page for _Nerfies_](https://nerfies.github.io/). It's licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+## Citation
+If you use CLIP-RT in your research, please cite our work as follows:
+```
+@article{kang2024cliprt,
+  title={CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision},
+  author={Kang, Gi-Cheon and Kim, Junghyun and Shim, Kyuhwan and Lee, Jun Ki and Zhang, Byoung-Tak},
+  year={2024},
+  conference={3rd Workshop on Language and Robot Learning (LangRob) @ The Conference on Robot Learning (CoRL 2024)}
+}
+```
+## Acknowledgements
+This work was partly supported by the IITP (RS-2021-II212068-AIHub/10%, RS-2021-II211343-GSAI/20%, 2022-0-00951-LBA/20%, 2022-0-00953-PICA/20%) and NRF (RS-2024-00353991/20%, RS-2023-00274280/10%) grant funded by the Korean government.
