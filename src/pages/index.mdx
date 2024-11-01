@@ -19,6 +19,17 @@ import TwoColumns from "../components/TwoColumns.astro";
 import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
+
+import close_the_laptop from "../assets/videos/close_the_laptop.mp4";
+import draw_a_line from "../assets/videos/draw_a_line.mp4";
+import erase_the_whiteboard from "../assets/videos/erase_the_whiteboard.mp4";
+import hide_the_pooh from "../assets/videos/hide_the_pooh.mp4";
+import open_the_cabinet from "../assets/videos/open_the_cabinet.mp4";
+import open_the_trashcan from "../assets/videos/open_the_trashcan.mp4";
+import play_with_car from "../assets/videos/play_with_car.mp4";
+import pour_the_dog_food from "../assets/videos/pour_the_dog_food.mp4";
+import stamp from "../assets/videos/stamp.mp4";
+
 import model_overview from "../assets/model_overview.png";
 import std from "../assets/std.png";
 import exp_results from "../assets/exp_results.png";
@@ -28,12 +39,6 @@ import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
 export const components = {pre: CodeBlock}
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import SwiperCore, { Pagination, Navigation } from 'swiper';
-
 
 <Header
   title={frontmatter.title}
@@ -99,40 +104,40 @@ import SwiperCore, { Pagination, Navigation } from 'swiper';
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
-      <Swiper
-        pagination={{ clickable: true }}
-        spaceBetween={15}
-        slidesPerView={3}
-        loop={true}
-      >
-        <SwiperSlide>
-          <div class="video-group">
-            <Video source="../assets/videos/close_the_laptop.mp4" caption="Close the laptop" />
-            <Video source="../assets/videos/draw_a_line.mp4" caption="Draw a line" />
-            <Video source="../assets/videos/erase_the_whiteboard.mp4" caption="Erase the whiteboard" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div class="video-group">
-            <Video source="../assets/videos/hide_the_pooh.mp4" caption="Hide the Pooh" />
-            <Video source="../assets/videos/open_the_cabinet.mp4" caption="Open the cabinet" />
-            <Video source="../assets/videos/open_the_trashcan.mp4" caption="Open the trashcan" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div class="video-group">
-            <Video source="../assets/videos/play_with_car.mp4" caption="Play with the car" />
-            <Video source="../assets/videos/pour_the_dog_food.mp4" caption="Pour the dog food" />
-            <Video source="../assets/videos/stamp.mp4" caption="Stamp" />
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      <div class="video-group">
+        <Figure caption="Close the laptop">
+          <Video source={close_the_laptop} />
+        </Figure>
+        <Figure caption="Draw a line">
+          <Video source={draw_a_line} />
+        </Figure>
+        <Figure caption="Erase the whiteboard">
+          <Video source={erase_the_whiteboard} />
+        </Figure>
+        <Figure caption="Hide the Pooh">
+          <Video source={hide_the_pooh} />
+        </Figure>
+        <Figure caption="Open the cabinet">
+          <Video source={open_the_cabinet} />
+        </Figure>
+        <Figure caption="Open the trashcan">
+          <Video source={open_the_trashcan} />
+        </Figure>
+        <Figure caption="Play with the car">
+          <Video source={play_with_car} />
+        </Figure>
+        <Figure caption="Pour the dog food">
+          <Video source={pour_the_dog_food} />
+        </Figure>
+        <Figure caption="Stamp">
+          <Video source={stamp} />
+        </Figure>
+      </div>
     </div>
   </div>
 </section>
 
 <HighlightedSection>
-
 ## Abstract
 
 This paper explores how nonexperts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. 
@@ -245,4 +250,3 @@ This paper presents CLIP-RT, enabling non-experts to teach robots new manipulati
   year = "2024",
   conference = "3rd Workshop on Language and Robot Learning (LangRob) @ The Conference on Robot Learning (CoRL 2024)",
 }
-```
