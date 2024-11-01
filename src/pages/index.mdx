@@ -19,8 +19,11 @@ import TwoColumns from "../components/TwoColumns.astro";
 import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
-import outside from "../assets/outside.mp4";
 import model_overview from "../assets/model_overview.png";
+import std from "../assets/std.png";
+import exp_results from "../assets/exp_results.png";
+import figure1 from "../assets/figure1.png";
+
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
@@ -93,36 +96,34 @@ import SwiperCore, { Pagination, Navigation } from 'swiper';
     },
   ]}
 />
-
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <Swiper
         pagination={{ clickable: true }}
-        navigation
-        spaceBetween={20}
-        slidesPerView={3} 
+        spaceBetween={15}
+        slidesPerView={3}
         loop={true}
       >
         <SwiperSlide>
           <div class="video-group">
-            <Video source="/static/videos/close_the_laptop.mp4" />
-            <Video source="/static/videos/draw_a_line.mp4" />
-            <Video source="/static/videos/erase_the_whiteboard.mp4" />
+            <Video source="./static/videos/close_the_laptop.mp4" caption="Close the laptop" />
+            <Video source="./static/videos/draw_a_line.mp4" caption="Draw a line" />
+            <Video source="./static/videos/erase_the_whiteboard.mp4" caption="Erase the whiteboard" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div class="video-group">
-            <Video source="/static/videos/hide_the_pooh.mp4" />
-            <Video source="/static/videos/open_the_cabinet.mp4" />
-            <Video source="/static/videos/open_the_trashcan.mp4" />
+            <Video source="./static/videos/hide_the_pooh.mp4" caption="Hide the Pooh" />
+            <Video source="./static/videos/open_the_cabinet.mp4" caption="Open the cabinet" />
+            <Video source="./static/videos/open_the_trashcan.mp4" caption="Open the trashcan" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div class="video-group">
-            <Video source="/static/videos/play_with_car.mp4" />
-            <Video source="/static/videos/pour_the_dog_food.mp4" />
-            <Video source="/static/videos/stamp.mp4" />
+            <Video source="./static/videos/play_with_car.mp4" caption="Play with the car" />
+            <Video source="./static/videos/pour_the_dog_food.mp4" caption="Pour the dog food" />
+            <Video source="./static/videos/stamp.mp4" caption="Stamp" />
           </div>
         </SwiperSlide>
       </Swiper>
@@ -144,65 +145,104 @@ CLIP-RT shows strong capabilities in acquiring novel manipulation skills, outper
 
 </HighlightedSection>
 
-## Figures
+## Motivation
 
-In practice, we add a simple text prompt to language instructions: What motion should the robot arm perform to complete the instruction
+### Challenges in Language-Conditioned Robotic Policies
+- Obtaining real-world robot demonstration data is often based on experts who can operate robots or teleoperation systems
+- Struggle to expand their set of manipulation skills to perform a wide range of real-world tasks in diverse environments
+
+### Research Question
+
+How non-experts can teach robots desired skills intuitively by using natural language as a interface?
+
+
+<Figure
+    caption="Research Question">
+    <Image source={figure1} altText="Research Question" />
+</Figure>
+
+
+### Approach
+- Collect robotic data using natural language
+- Train using collected data
+
+## Data Collection
+
+### Large Language Model-based Teleoperation
+
+1. Provide initial **language instruction** (e.g., “ Pour the dog food ”)
+2. Provide **natural language supervisions** in specific states to complete the instruction (e.g., “ Move left a lot ”)
+3. LLMs translate the natural language supervision into the **low-level end-effector command** based on a detailed text prompt :
+    1. input and output space
+    2. the 3D Cartesian coordinate system of the environment
+    3. input-output examples
+
+
+- Collect **10 episodes** for each skill via LLM-based teleoperation
+
+
+### Stochastic Trajectory Diversification (STD)
+
+<Figure
+    caption="Stochastic Trajectory Diversification">
+    <Image source={std} altText="Stochastic Trajectory Diversification" />
+</Figure>
+- **The Diversification phase** diversifies the expert trajectory into multiple alternative trajectories
+- **The Recovery phase** intentionally deviates from the original trajectory and then executes a recovery action to return to the original path. Recovery action is utilized in training
+
+
+## CLIP-RT Model 
+
+The CLIP-RT model extends the idea of CLIP to robot learning to learn language-conditioned robotic policies from natural language
+
 
 <Figure
     caption="Overview of CLIP-RT.">
     <Image source={model_overview} altText="Overview of CLIP-RT." />
 </Figure>
 
-## Two columns
+**Contrastive Imitation Learning**
+- Learns to measure the pairwise similarity between language supervision and contextual information
+(i.e., current scene and language instruction)
 
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+**Training Data**
+- Open X-Embodiment data / collected in-domain data
 
-<TwoColumns>
-  <Figure slot="left" caption="Take a look at this YouTube video.">
-    <YouTubeVideo videoId="wjZofJX0v4M" />
-  </Figure>
-  <Figure slot="right" caption="Now look at this Gaussian Splat, rendered with a React component.">
-    <Splat client:idle />
-  </Figure>
-</TwoColumns>
+**Closed-Loop Robot Control**
+- In each time step, CLIP-RT selects the action class with the highest similarity score between the context and
+￼ action classes specified in natural language 
 
-## Heading levels
+<LaTeX formula="\mathcal{L}_{\mathrm{cil}} = - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right]; \sigma(s_{ij}) = \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}" />
 
-Use headings to divide your content into sections.
+## Experimental Results 
 
-### Heading 3
+<Figure
+    caption="Experimental Results">
+    <Image source={exp_results} altText="Experimental Results" />
+</Figure>
+- Evaluate on 9 Common tasks (Top) and 10 Novel tasks (Bottom);
+Arranged in ascending order based on average steps per episode
 
-Go down a level to heading 3...
+### Key Takeaways
 
-#### Heading 4
+- CLIP-RT outperforms OpenVLA in average success rates by **3%
+on common tasks and 17% on novel manipulation tasks**
+- Vision-language models (VLMs) trained on Internet-scale data
+favor **action representations specified in language**, rather than
+existing low-level action tokenization (v.s. CLIP-RT-Action)
+- **Impact of STD**: CLIP-RT v.s. CLIP-RT-Passive
 
-...and down again to heading 4.
-
-## LaTeX
-
-You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: <LaTeX inline formula="a^2 + b^2 = c^2" />. Or, you can write them as a block:
-
-<LaTeX formula="\int_a^b f(x) dx" />
-
-## Tables
-
-You can add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
+## Conclusion
+This paper presents CLIP-RT, enabling non-experts to teach robots new manipulation skills through natural language, making robot learning more accessible and scalable for everyday users.
 
 ## BibTeX citation
 
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
+@article{kang2024cliprt,
+  title={CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision},
+  author={Kang, Gi-Cheon and Kim, Junghyun and Shim, Kyuhwan and Lee, Jun Ki and Zhang, Byoung-Tak},
   title = "Academic Project Page Template",
   year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+  conference = "3rd Workshop on Language and Robot Learning (LangRob) @ The Conference on Robot Learning (CoRL 2024)",
 }
 ```
-
