@@ -6,6 +6,7 @@ favicon: favicon.svg
 thumbnail: screenshot.png
 ---
 
+import "../styles/index.css";
 import Layout from "../layouts/Layout.astro";
 
 import Header from "../components/Header.astro";
@@ -24,6 +25,12 @@ import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
 export const components = {pre: CodeBlock}
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import SwiperCore, { Pagination, Navigation } from 'swiper';
+
 
 <Header
   title={frontmatter.title}
@@ -31,34 +38,33 @@ export const components = {pre: CodeBlock}
     {
       name: "Gi-Cheon Kang",
       url: "https://gicheonkang.com",
-      notes: ["*,1"],
+      notes: ["1,2,*"],
     },
     {
       name: "Junghyun Kim",
       url:"https://jhkim-snu.github.io/",
-      notes: ["*,1"],
+      notes: ["1,2,*"],
     },
     {
       name: "Kyuhwan Shim",
       url:"https://bi.snu.ac.kr/~khshim/",
-      notes: ["1"],
+      notes: ["1,2"],
     },
     {
       name: "Jun Ki Lee",
       url:"https://junkilee.github.io/",
-      notes: ["†,2"],
+      notes: ["2,†"],
     },
     {
       name: "Byoung-Tak Zhang",
       url:"https://bi.snu.ac.kr/~btzhang/",
-      notes: ["†,2"],
+      notes: ["1,2,†"],
     },
   ]}
   institute={[
     { symbol: "¹", name: "Graduate School of AI, Seoul National University" },
     { symbol: "²", name: "AI Institute, Seoul National University (AIIS)" },
-  ]}
-  conference="Conference of Robot Learning Workshop@2024, LangRob"
+  ]} 
   notes={[
     {
       symbol: "*",
@@ -88,9 +94,41 @@ export const components = {pre: CodeBlock}
   ]}
 />
 
-
-
-<Video source={outside} />
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <Swiper
+        pagination={{ clickable: true }}
+        navigation
+        spaceBetween={20}
+        slidesPerView={3} 
+        loop={true}
+      >
+        <SwiperSlide>
+          <div class="video-group">
+            <Video source="/static/videos/close_the_laptop.mp4" />
+            <Video source="/static/videos/draw_a_line.mp4" />
+            <Video source="/static/videos/erase_the_whiteboard.mp4" />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div class="video-group">
+            <Video source="/static/videos/hide_the_pooh.mp4" />
+            <Video source="/static/videos/open_the_cabinet.mp4" />
+            <Video source="/static/videos/open_the_trashcan.mp4" />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div class="video-group">
+            <Video source="/static/videos/play_with_car.mp4" />
+            <Video source="/static/videos/pour_the_dog_food.mp4" />
+            <Video source="/static/videos/stamp.mp4" />
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </div>
+</section>
 
 <HighlightedSection>
 
@@ -167,3 +205,4 @@ You can add simple tables using [GitHub Flavored Markdown syntax](https://docs.g
   howpublished = "\url{https://research-template.roman.technology}",
 }
 ```
+
