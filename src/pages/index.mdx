@@ -231,7 +231,12 @@ The CLIP-RT model extends the idea of CLIP to robot learning to learn language-c
 - In each time step, CLIP-RT selects the action class with the highest similarity score between the context and
 ￼ action classes specified in natural language 
 
-<LaTeX formula="\mathcal{L}_{\mathrm{cil}} = - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right]; \sigma(s_{ij}) = \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}" />
+<div class="latex-container">
+  <LaTeX formula="\begin{aligned}
+  \mathcal{L}_{\mathrm{cil}} = & - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right]; \\
+  \sigma(s_{ij}) = & \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}
+  \end{aligned}" />
+</div>
 
 ## Experimental Results 
 
