@@ -36,7 +36,7 @@
         padding: 0 10px;
     }
     .video-group {
-        grid-template-columns: 1fr; /* 모바일에서는 한 열로 설정 */
+        grid-template-columns: repeat(3, 1fr); /* 모바일에서도 3열 유지 */
     }
 }
 .latex-container {
