@@ -113,7 +113,7 @@ export const components = {pre: CodeBlock}
         <Figure caption="Close the laptop">
           <Video source={close_the_laptop} />
         </Figure>
-        <Figure caption="Draw a line from the circle to the star">
+        <Figure caption="Draw a line from the star to the circle">
           <Video source={draw_a_line} />
         </Figure>
         <Figure caption="Erase the whiteboard">
@@ -146,8 +146,8 @@ export const components = {pre: CodeBlock}
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem;">
       <p><strong>TL;DR</strong></p>
-      <p>We study how non-experts train robotic skills only through natural language supervision.</p>
-      <p>We propose a new VLA model, CLIP-RT that learns end-to-end policies directly from this supervision.</p>
+      <p>We explore how non-experts can train robotic skills only through natural language supervision.</p>
+      <p>Our VLA model, CLIP-RT, learns end-to-end policies directly from this supervision.</p>
   </div>
 </section>
 
@@ -167,8 +167,8 @@ CLIP-RT shows strong capabilities in acquiring novel manipulation skills, outper
 ## Motivation
 
 ### Challenges in Language-Conditioned Robotic Policies
-- Obtaining real-world robot demonstration data is often based on experts who can operate robots or teleoperation systems
-- Struggle to expand their set of manipulation skills to perform a wide range of real-world tasks in diverse environments
+- Obtaining real-world robot data often relies on experts who can operate robots or teleoperation systems
+- Struggle to rapidly expand a set of manipulation skills to perform a wide range of real-world tasks
 
 ### Research Question
 
@@ -176,7 +176,7 @@ How non-experts can teach robots desired skills intuitively by using natural lan
 
 
 <Figure
-    caption="Research Question">
+    caption="Language-based teleoperation">
     <Image source={figure1} altText="Research Question" />
 </Figure>
 
@@ -187,7 +187,7 @@ How non-experts can teach robots desired skills intuitively by using natural lan
 
 ## Data Collection
 
-### Large Language Model-based Teleoperation
+### Language-Based Teleoperation
 
 1. Provide initial **language instruction** (e.g., “ Pour the dog food ”)
 2. Provide **natural language supervisions** in specific states to complete the instruction (e.g., “ Move left a lot ”)
