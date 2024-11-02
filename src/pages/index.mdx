@@ -2,11 +2,12 @@
 layout: ../layouts/Layout.astro
 title: "CLIP-RT : Learning Language-Conditioned Robotic Policies from Natural Language Supervision"
 description: Learning Language-Conditioned Robotic Policies from Natural Language Supervision
-favicon: favicon.ico
+favicon: favicon.svg
 thumbnail: screenshot.png
 ---
 
 import "../styles/index.css";
+
 import Layout from "../layouts/Layout.astro";
 
 import Header from "../components/Header.astro";
@@ -105,43 +106,68 @@ export const components = {pre: CodeBlock}
     },
   ]}
 />
-
 <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="hero-body">
       <div class="video-group">
-        <Figure caption="Close the laptop">
-          <Video source={close_the_laptop} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Draw a line">
-          <Video source={draw_a_line} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Erase the whiteboard">
-          <Video source={erase_the_whiteboard} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Hide the Pooh">
-          <Video source={hide_the_pooh} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Open the cabinet">
-          <Video source={open_the_cabinet} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Open the trashcan">
-          <Video source={open_the_trashcan} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Play with the car">
-          <Video source={play_with_car} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Pour the dog food">
-          <Video source={pour_the_dog_food} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
-        <Figure caption="Stamp">
-          <Video source={stamp} autoplay={true} muted={true} loop={true} playsinline={true} />
-        </Figure>
+        <figure>
+          <video id="close_the_laptop" autoplay muted loop playsinline>
+            <source src={close_the_laptop} type="video/mp4" />
+          </video>
+          <figcaption>Close the laptop</figcaption>
+        </figure>
+        <figure>
+          <video id="draw_a_line" autoplay muted loop playsinline>
+            <source src={draw_a_line} type="video/mp4" />
+          </video>
+          <figcaption>Draw a line</figcaption>
+        </figure>
+        <figure>
+          <video id="erase_the_whiteboard" autoplay muted loop playsinline>
+            <source src={erase_the_whiteboard} type="video/mp4" />
+          </video>
+          <figcaption>Erase the whiteboard</figcaption>
+        </figure>
+        <figure>
+          <video id="hide_the_pooh" autoplay muted loop playsinline>
+            <source src={hide_the_pooh} type="video/mp4" />
+          </video>
+          <figcaption>Hide the Pooh</figcaption>
+        </figure>
+        <figure>
+          <video id="open_the_cabinet" autoplay muted loop playsinline>
+            <source src={open_the_cabinet} type="video/mp4" />
+          </video>
+          <figcaption>Open the cabinet</figcaption>
+        </figure>
+        <figure>
+          <video id="open_the_trashcan" autoplay muted loop playsinline>
+            <source src={open_the_trashcan} type="video/mp4" />
+          </video>
+          <figcaption>Open the trashcan</figcaption>
+        </figure>
+        <figure>
+          <video id="play_with_car" autoplay muted loop playsinline>
+            <source src={play_with_car} type="video/mp4" />
+          </video>
+          <figcaption>Play with the car</figcaption>
+        </figure>
+        <figure>
+          <video id="pour_the_dog_food" autoplay muted loop playsinline>
+            <source src={pour_the_dog_food} type="video/mp4" />
+          </video>
+          <figcaption>Pour the dog food</figcaption>
+        </figure>
+        <figure>
+          <video id="stamp" autoplay muted loop playsinline>
+            <source src={stamp} type="video/mp4" />
+          </video>
+          <figcaption>Stamp</figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
- 
 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem;">
