@@ -111,31 +111,31 @@ export const components = {pre: CodeBlock}
     <div class="container">
       <div class="video-group">
         <Figure caption="Close the laptop">
-          <Video source={close_the_laptop} autoplay={true} muted={true} />
+          <Video source={close_the_laptop} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Draw a line">
-          <Video source={draw_a_line} autoplay={true} muted={true} />
+          <Video source={draw_a_line} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Erase the whiteboard">
-          <Video source={erase_the_whiteboard} autoplay={true} muted={true} />
+          <Video source={erase_the_whiteboard} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Hide the Pooh">
-          <Video source={hide_the_pooh} autoplay={true} muted={true} />
+          <Video source={hide_the_pooh} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Open the cabinet">
-          <Video source={open_the_cabinet} autoplay={true} muted={true} />
+          <Video source={open_the_cabinet} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Open the trashcan">
-          <Video source={open_the_trashcan} autoplay={true} muted={true} />
+          <Video source={open_the_trashcan} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Play with the car">
-          <Video source={play_with_car} autoplay={true} muted={true} />
+          <Video source={play_with_car} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Pour the dog food">
-          <Video source={pour_the_dog_food} autoplay={true} muted={true} />
+          <Video source={pour_the_dog_food} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Stamp">
-          <Video source={stamp} autoplay={true} muted={true} />
+          <Video source={stamp} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
       </div>
     </div>
@@ -231,9 +231,13 @@ The CLIP-RT model extends the idea of CLIP to robot learning to learn language-c
 - In each time step, CLIP-RT selects the action class with the highest similarity score between the context and
 ￼ action classes specified in natural language 
 
-<div class="latex-container">
+<div class="latex-container" style="text-align: center;">
   <LaTeX formula="\begin{aligned}
-  \mathcal{L}_{\mathrm{cil}} = & - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right]; \\
+  \mathcal{L}_{\mathrm{cil}} = & - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right]; 
+  \end{aligned}" />
+</div>
+<div class="latex-container" style="text-align: center;">
+  <LaTeX formula="\begin{aligned}
   \sigma(s_{ij}) = & \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}
   \end{aligned}" />
 </div>
