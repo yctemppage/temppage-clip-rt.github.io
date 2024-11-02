@@ -111,31 +111,31 @@ export const components = {pre: CodeBlock}
     <div class="container">
       <div class="video-group">
         <Figure caption="Close the laptop">
-          <Video source={close_the_laptop} />
+          <Video source={close_the_laptop} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Draw a line from the star to the circle">
-          <Video source={draw_a_line} />
+        <Figure caption="Draw a line">
+          <Video source={draw_a_line} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Erase the whiteboard">
-          <Video source={erase_the_whiteboard} />
+          <Video source={erase_the_whiteboard} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Hide the Pooh with the green cup">
-          <Video source={hide_the_pooh} />
+        <Figure caption="Hide the Pooh">
+          <Video source={hide_the_pooh} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
         <Figure caption="Open the cabinet">
-          <Video source={open_the_cabinet} />
+          <Video source={open_the_cabinet} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Open the trash can">
-          <Video source={open_the_trashcan} />
+        <Figure caption="Open the trashcan">
+          <Video source={open_the_trashcan} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Play with the orange car">
-          <Video source={play_with_car} />
+        <Figure caption="Play with the car">
+          <Video source={play_with_car} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Pour the dog food in the bowl">
-          <Video source={pour_the_dog_food} />
+        <Figure caption="Pour the dog food">
+          <Video source={pour_the_dog_food} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
-        <Figure caption="Stamp near the circle">
-          <Video source={stamp} />
+        <Figure caption="Stamp">
+          <Video source={stamp} autoplay={true} muted={true} loop={true} playsinline={true} />
         </Figure>
       </div>
     </div>
@@ -225,6 +225,17 @@ We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot lear
 ### Contrastive Imitation Learning
 
 The goal of contrastive imitation learning is to optimize the pairwise similarity between language supervision and contextual information (i.e., the current scene and language instruction). We first train CLIP-RT on Open X-Embodiment (OXE) dataset and then finetune it on our collected in-domain data. Since the OXE dataset does not contain natural language supervision, we transform existing low-level end-effector actions into natural language supervision to train CLIP-RT.
+
+<div class="latex-container" style="text-align: center;">
+  <LaTeX formula="\begin{aligned}
+  \mathcal{L}_{\mathrm{cil}} = & - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right];
+  \end{aligned}" />
+</div>
+<div class="latex-container" style="text-align: center;">
+  <LaTeX formula="\begin{aligned}
+  \sigma(s_{ij}) = & \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}
+  \end{aligned}" />
+</div>
 
 
 ### Closed-Loop Robot Control
