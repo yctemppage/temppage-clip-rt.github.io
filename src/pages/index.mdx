@@ -33,7 +33,7 @@ import stamp from "../assets/videos/stamp.mp4";
 
 import snu_ipai from "../assets/snu_ipai.png";
 import snu_aiis from "../assets/snu_aiis.png";
-
+import imit from "../assets/imit.png";
 import model_overview from "../assets/model_overview.png";
 import std from "../assets/std.png";
 import exp_results from "../assets/exp_results.png";
@@ -231,16 +231,9 @@ We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot lear
 
 The goal of contrastive imitation learning is to optimize the pairwise similarity between language supervision and contextual information (i.e., the current scene and language instruction). We first train CLIP-RT on Open X-Embodiment (OXE) dataset and then finetune it on our collected in-domain data. Since the OXE dataset does not contain natural language supervision, we transform existing low-level end-effector actions into natural language supervision to train CLIP-RT.
 
-<div class="latex-container" style="text-align: center;">
-  <LaTeX formula="\begin{aligned}
-  \mathcal{L}_{\mathrm{cil}} = & - {1 \over M^2} \sum_{i=1}^M \sum_{j=1}^M \left[y_{ij} \mathrm{log} \sigma(s_{ij}) + (1 - y_{ij}) \mathrm{log} (1-\sigma(s_{ij})) \right];
-  \end{aligned}" />
-</div>
-<div class="latex-container" style="text-align: center;">
-  <LaTeX formula="\begin{aligned}
-  \sigma(s_{ij}) = & \frac{1}{1 + \mathrm{exp}(-\mathrm{sim}(c_i, z_j))}
-  \end{aligned}" />
-</div>
+<Figure>
+  <Image source={imit} altText="imitation learning" style={{ maxWidth: "15%", height: "auto" }} />
+</Figure>
 
 
 ### Closed-Loop Robot Control
